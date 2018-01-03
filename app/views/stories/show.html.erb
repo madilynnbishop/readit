@@ -1,0 +1,19 @@
+
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @story.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><span>Number of votes: <%= @story.votes.size %></span></h6>
+    Link:<a href="#" class="card-link"><%= link_to @story.link, @story %></a>
+    <p><%= link_to 'Edit Story', edit_story_path(@story), class: 'btn btn-light' %></p>
+    <div id="vote_form">
+    <%= form_tag story_votes_path(@story), remote: true do %>
+    <%= submit_tag 'Vote for it' %>
+  <% end %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<%= link_to 'Add New Story', new_story_path(@story), class: 'btn btn-primary' %>
+<%= link_to 'View Random Link', stories_path, class: 'btn  btn-primary' %>

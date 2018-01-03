@@ -1,0 +1,32 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Create Story</h5>
+    <br>
+    <br>
+      
+      <% if @story.errors.any? %>
+      <div class="form_errors">
+        <h5>Errors</h5>
+        <ul>
+          <% @story.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+    <%= form_for @story do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name, maxlength: 100, size: 30 %>
+    </div>
+    <div>
+      <%= f.label :link %>
+      <%= f.text_field :link, maxlength: 100, size: 30 %> 
+    </div>
+    <%= submit_tag %>
+    <% end %>
+  </div>
+</div>
+<br>
+<br>
+<%= link_to 'View Random Link', stories_path, class: 'btn  btn-primary' %>

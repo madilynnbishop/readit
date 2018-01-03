@@ -1,0 +1,14 @@
+<p>A random link:
+<%= link_to @story.name, @story %></p>
+<p>Number of votes:
+<%= @story.votes.size %></p>
+<p><%= link_to 'Edit Story', edit_story_path(@story), class: 'btn btn-light' %></p>
+<br>
+<br>
+<br>
+Total number of stories: 
+<%= @story_count %>
+<br>
+<br>
+<%= link_to 'Add New Story', new_story_path(@story), class: 'btn btn-primary' %>
+<%= link_to 'View Another Random Link', stories_path, class: 'btn  btn-primary' %>
