@@ -1,14 +1,15 @@
-<p>A random link:
-<%= link_to @story.name, @story %></p>
-<p>Number of votes:
-<%= @story.votes.size %></p>
+<p>A random link:<%= link_to @story.name, @story %></p>
+<p>Number of votes: <%= @story.votes.size %></p>
 <p><%= link_to 'Edit Story', edit_story_path(@story), class: 'btn btn-light' %></p>
 <br>
+<div id="vote_form">
+  <%= form_tag story_votes_path(@story) %>
+  <button ="submit" class="btn btn-default"><%= submit_tag 'Vote for story' %></button>
+</div>
 <br>
 <br>
-Total number of stories: 
-<%= @story_count %>
 <br>
+  <%= link_to 'Add New Story', new_story_path(@story), class: 'btn btn-primary' %>
+  <%= link_to 'View Another Random Link', stories_path, class: 'btn  btn-primary' %>
 <br>
-<%= link_to 'Add New Story', new_story_path(@story), class: 'btn btn-primary' %>
-<%= link_to 'View Another Random Link', stories_path, class: 'btn  btn-primary' %>
+<p>Total number of stories on Readit: <%= @story_count %><p>

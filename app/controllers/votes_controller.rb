@@ -1,11 +1,6 @@
 class VotesController < ApplicationController
   
-  def new
-    @vote= Vote.new
-  end
-  
-  
-  def create
+   def create
      @story = Story.find(params[:story_id])
      @story.votes.create
      respond_to do |format|
@@ -13,5 +8,5 @@ class VotesController < ApplicationController
        format.js {}
      end
    end
-  
+   
 end

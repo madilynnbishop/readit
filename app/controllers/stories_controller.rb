@@ -3,6 +3,7 @@ class StoriesController < ApplicationController
     @current_time= Time.now
     @story= Story.order('RANDOM()').first
     @story_count= Story.count
+    @highest_vote=Story.order("stories.votes DESC").limit(5)
   end
   
   def create
@@ -30,7 +31,7 @@ class StoriesController < ApplicationController
  def update
    @story = Story.find params[:id]
    if @story.update_attributes(story_params)
-     render 'show'
+     render'show'
    else
      render 'edit'
    end
