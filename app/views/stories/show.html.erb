@@ -1,16 +1,30 @@
-
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= @story.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><span>Number of votes: <%= @story.votes.size %></span></h6>
-    Link:<a href="#" class="card-link"><%= link_to @story.link, @story %></a>
-    <p><%= link_to 'Edit Story', edit_story_path(@story), class: 'btn btn-light' %>
-    <div id="vote_form">
-    <%= form_tag story_votes_path(@story) %>
-    <button ="submit" class="btn btn-default"><%= submit_tag 'Vote for story' %></button>
-  </div></p>
-  </div>
+<h5><%= @story.name %></h5>
+<p>Link:<a href="#" class="card-link"><%= link_to @story.link, @story %></a></p>
+<br>
+<div>
+  <%= link_to 'Edit Story', edit_story_path(@story), class: 'btn btn-light' %>
 </div>
+<br>
+<div id="vote_form">
+  <%= form_tag story_votes_path(@story) %>
+  <button="submit" class="btn btn-default" id="vote_button"><%= submit_tag 'Vote for story' %></button>
+</div>
+<h2><span id="vote_score">Score: <%= @story.votes.size %></span></h2>
+<br>
+<br>
+<div id="vote_history">
+  <% if @story.votes.empty? %>
+    <em>No votes yet!</em>
+  <% else %>
+    <%= render partial: 'votes/vote', collection: @story.votes.latest %> 
+  <% end %> 
+</div>
+
+<p class="submitted_by"
+   Submitted by:
+   <span><%= @story.user.name %></span>
+ </p>
+
 <br>
 <br>
 <br>

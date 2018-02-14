@@ -1,13 +1,13 @@
 class StoriesController < ApplicationController
+  before_action :ensure_login, only: [ :new, :create ]
   def index
     @current_time= Time.now
     @story= Story.order('RANDOM()').first
     @story_count= Story.count
-    @highest_vote=Story.order("stories.votes DESC").limit(5)
   end
   
   def create
-    @story= Story.new(story_params)
+     @story = @current_user.stories.build story_params
     if @story.save
       flash[:notice]= 'Story submission succeeded'
       redirect_to stories_path
